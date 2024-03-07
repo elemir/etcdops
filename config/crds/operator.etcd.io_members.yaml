@@ -1,0 +1,80 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.8.0
+  creationTimestamp: null
+  name: members.operator.etcd.io
+spec:
+  group: operator.etcd.io
+  names:
+    kind: Member
+    listKind: MemberList
+    plural: members
+    singular: member
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: Member is the Schema for the members API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: MemberSpec defines the desired state of an etcd cluster member
+            properties:
+              backup:
+                type: string
+              broken:
+                type: boolean
+              certificateUpdate:
+                type: boolean
+              clusterName:
+                type: string
+              clusterToken:
+                type: string
+              members:
+                items:
+                  type: string
+                type: array
+              version:
+                type: string
+            type: object
+          status:
+            description: MemberStatus defines the observed state of an etcd cluster
+              member
+            properties:
+              certificateExpires:
+                type: boolean
+              failedTime:
+                format: date-time
+                type: string
+              phase:
+                description: MemberPhase defines status of specific etcd cluster member
+                type: string
+              version:
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

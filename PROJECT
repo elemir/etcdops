@@ -1,0 +1,46 @@
+domain: etcd.io
+layout:
+- go.kubebuilder.io/v3
+projectName: etcdops
+repo: github.com/elemir/etcdops
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: etcd.io
+  group: operator
+  kind: Cluster
+  path: github.com/elemir/etcdops/api/v1alpha1
+  version: v1alpha1
+  webhooks:
+    validation: true
+    webhookVersion: v1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: etcd.io
+  group: operator
+  kind: Member
+  path: github.com/elemir/etcdops/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: etcd.io
+  group: operator
+  kind: Backup
+  path: github.com/elemir/etcdops/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: etcd.io
+  group: operator
+  kind: BackupSchedule
+  path: github.com/elemir/etcdops/api/v1alpha1
+  version: v1alpha1
+version: "3"
